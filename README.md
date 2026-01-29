@@ -149,6 +149,22 @@ http://localhost:5173
 - PostgreSQL is used to ensure data persistence across deployments
 - Frontend uses Vercel rewrite rules to support client-side routing and page refresh
 
+## Assumptions & Limitations
+
+- Single admin user (no authentication implemented)
+- Leave management, payroll, and advanced HR features are intentionally out of scope
+- UI focuses on usability and clarity rather than advanced visual design
+- Error handling and validations are implemented at both backend and frontend levels
+
+## Key Highlights
+
+- Clean RESTful API design
+- Proper database normalization
+- Production-ready deployment
+- Client-side routing handled correctly
+- Real-time attendance updates
+- Clear separation of concerns between frontend and backend
+
 ## Conclusion
 
 This project demonstrates end-to-end full-stack development, covering backend APIs, frontend UI, database persistence, and production deployment.
