@@ -30,6 +30,15 @@ class AttendanceSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         employee_id = validated_data.pop('employee_id')
         employee = Employee.objects.get(employee_id=employee_id)
-        validated_data['employee'] = employee
-        return super().create(validated_data)
+        date = validated_data.get('date')
+        status = validated_data.get('status')
+
+        attendance, created = Attendance.objects.update_or_create(
+            employee=employee,
+            date=date,
+            defaults={'status': status}
+        )
+
+        return attendance
+
 
