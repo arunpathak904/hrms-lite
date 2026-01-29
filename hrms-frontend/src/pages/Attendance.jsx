@@ -6,10 +6,15 @@ export default function Attendance() {
   const { employeeId } = useParams();
 
   return (
-    <div>
+  <div className="container">
+    <div className="card">
       <h2>Attendance – {employeeId}</h2>
       <AttendanceForm employeeId={employeeId} />
+    </div>
+
+    <div className="card">
       <AttendanceList employeeId={employeeId} />
     </div>
-  );
+  </div>
+);
 }

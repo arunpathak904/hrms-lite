@@ -27,12 +27,17 @@ export default function Employees() {
   }, []);
 
   return (
-    <div>
-      <h2>Employees</h2>
+  <div className="container">
+    <div className="card">
+      <h2>Employee Management</h2>
       <EmployeeForm onSuccess={fetchEmployees} />
+    </div>
+
+    <div className="card">
       {loading && <Loader />}
       <ErrorMessage message={error} />
       <EmployeeList employees={employees} onDelete={fetchEmployees} />
     </div>
-  );
+  </div>
+);
 }

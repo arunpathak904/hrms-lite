@@ -3,8 +3,8 @@ import api from "../api/axios";
 
 export default function EmployeeList({ employees, onDelete }) {
   if (employees.length === 0) {
-    return <p>No employees found</p>;
-  }
+  return <p className="empty">No employees found</p>;
+}
 
   const handleDelete = async (id) => {
     await api.delete(`employees/${id}/`);
@@ -12,14 +12,27 @@ export default function EmployeeList({ employees, onDelete }) {
   };
 
   return (
-    <ul>
-      {employees.map((emp) => (
-        <li key={emp.id}>
-          {emp.full_name} ({emp.employee_id})
-          <Link to={`/attendance/${emp.employee_id}`}> Attendance</Link>
-          <button onClick={() => handleDelete(emp.id)}>Delete</button>
-        </li>
-      ))}
-    </ul>
-  );
+  <div>
+    {employees.map((emp) => (
+      <div className="list-item" key={emp.id}>
+        <div>
+          <strong>{emp.full_name}</strong>
+          <div>{emp.employee_id} • {emp.department}</div>
+        </div>
+
+        <div>
+          <Link className="link" to={`/attendance/${emp.employee_id}`}>
+            Attendance
+          </Link>
+          <button
+            className="danger"
+            onClick={() => handleDelete(emp.id)}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+);
 }
