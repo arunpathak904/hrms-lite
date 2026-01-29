@@ -1,11 +1,15 @@
 from rest_framework import serializers
 from .models import Employee, Attendance
 
-from rest_framework import serializers
-from .models import Employee
-
 
 class EmployeeSerializer(serializers.ModelSerializer):
+    present_days = serializers.SerializerMethodField()
+
+    def get_present_days(self, obj):
+        return Attendance.objects.filter(
+            employee=obj,
+            status="Present"
+        ).count()
 
     def validate_employee_id(self, value):
         if Employee.objects.filter(employee_id=value).exists():
@@ -60,5 +64,3 @@ class AttendanceSerializer(serializers.ModelSerializer):
         )
 
         return attendance
-
-
