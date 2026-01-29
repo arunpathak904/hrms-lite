@@ -16,8 +16,11 @@ export default function EmployeeList({ employees, onDelete }) {
     {employees.map((emp) => (
       <div className="list-item" key={emp.id}>
         <div>
-          <strong>{emp.full_name}</strong>
-          <div>{emp.employee_id} • {emp.department}</div>
+            <strong>{emp.full_name}</strong>
+            <div>{emp.employee_id} • {emp.department}</div>
+            <div>
+                <strong>Present Days:</strong> {emp.present_days}
+            </div>
         </div>
 
         <div>
