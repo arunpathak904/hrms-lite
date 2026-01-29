@@ -5,10 +5,14 @@ export default function AttendanceForm({ employeeId }) {
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("Present");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const submitAttendance = async (e) => {
     e.preventDefault();
+
+    // clear previous messages
     setError("");
+    setSuccess("");
 
     try {
         await api.post("attendance/", {
@@ -19,16 +23,18 @@ export default function AttendanceForm({ employeeId }) {
 
         setDate("");
         setStatus("Present");
+
+        setSuccess("Attendance saved successfully");
         onSuccess && onSuccess();
-        alert("Attendance saved successfully");
     } catch (err) {
-        setError("Attendance already marked or invalid data");
+        setError("Attendance could not be saved");
     }
   };
 
   return (
     <form onSubmit={submitAttendance}>
         {error && <p className="error">{error}</p>}
+        {success && <p style={{ color: "green" }}>{success}</p>}
 
         <input
         type="date"
@@ -48,4 +54,5 @@ export default function AttendanceForm({ employeeId }) {
         <button type="submit">Mark</button>
     </form>
   );
+
 }
