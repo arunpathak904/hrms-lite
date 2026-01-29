@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
-export default function AttendanceList({ employeeId }) {
+export default function AttendanceList({ employeeId, refresh }) {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
     api.get(`attendance/${employeeId}/`).then((res) => {
-      setRecords(res.data);
+        setRecords(res.data);
     });
-  }, [employeeId]);
+  }, [employeeId, refresh]);
+
 
   return (
     <ul>
