@@ -10,7 +10,16 @@ export default function Attendance() {
   return (
     <div className="container">
       <div className="card">
-        <h2>Attendance – {employeeId}</h2>
+        <h2>
+            Attendance – {employeeId}
+        </h2>
+
+        <button
+        onClick={() => window.history.back()}
+        style={{ marginBottom: "15px" }}
+        >
+        ← Back to Employees
+        </button>
 
         <AttendanceForm
           employeeId={employeeId}
