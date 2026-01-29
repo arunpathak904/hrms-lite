@@ -21,6 +21,7 @@ class AttendanceSerializer(serializers.ModelSerializer):
         model = Attendance
         fields = ['id', 'employee_id', 'employee', 'employee_name', 'date', 'status']
         read_only_fields = ['employee']
+        validators = [] 
 
     def validate_employee_id(self, value):
         if not Employee.objects.filter(employee_id=value).exists():
