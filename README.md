@@ -32,6 +32,7 @@ The application allows an admin to manage employees and track daily attendance t
 - Attendance is tracked per employee per date
 - Updating attendance for the same date updates the existing record
 - View attendance history for each employee
+- Display the total number of present days per employee
 
 ---
 
