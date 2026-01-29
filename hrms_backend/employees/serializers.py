@@ -1,10 +1,29 @@
 from rest_framework import serializers
 from .models import Employee, Attendance
 
+from rest_framework import serializers
+from .models import Employee
+
+
 class EmployeeSerializer(serializers.ModelSerializer):
+
+    def validate_employee_id(self, value):
+        if Employee.objects.filter(employee_id=value).exists():
+            raise serializers.ValidationError(
+                "Employee with this Employee ID already exists."
+            )
+        return value
+
+    def validate_email(self, value):
+        if Employee.objects.filter(email=value).exists():
+            raise serializers.ValidationError(
+                "Employee with this email already exists."
+            )
+        return value
+
     class Meta:
         model = Employee
-        fields = '__all__'
+        fields = "__all__"
 
 
 from rest_framework import serializers
