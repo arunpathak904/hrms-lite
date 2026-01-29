@@ -5,22 +5,25 @@ import AttendanceList from "../components/AttendanceList";
 
 export default function Attendance() {
   const { employeeId } = useParams();
-  const [refresh, setRefresh] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   return (
-  <div className="container">
-    <div className="card">
-      <h2>Attendance – {employeeId}</h2>
-      <AttendanceForm
-        employeeId={employeeId}
-        onSuccess={() => setRefresh(!refresh)}
-      />
+    <div className="container">
+      <div className="card">
+        <h2>Attendance – {employeeId}</h2>
 
-    </div>
+        <AttendanceForm
+          employeeId={employeeId}
+          onSuccess={() => setRefreshKey((prev) => prev + 1)}
+        />
+      </div>
 
-    <div className="card">
-      <AttendanceList employeeId={employeeId} />
+      <div className="card">
+        <AttendanceList
+          employeeId={employeeId}
+          refreshKey={refreshKey}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
 }

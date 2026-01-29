@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 
-export default function AttendanceList({ employeeId, refresh }) {
+export default function AttendanceList({ employeeId, refreshKey }) {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
     api.get(`attendance/${employeeId}/`).then((res) => {
-        setRecords(res.data);
+      setRecords(res.data);
     });
-  }, [employeeId, refresh]);
+  }, [employeeId, refreshKey]);
 
+  if (records.length === 0) {
+    return <p className="empty">No attendance records found</p>;
+  }
 
   return (
-    <ul>
+    <div>
       {records.map((rec) => (
-        <li key={rec.id}>
-          {rec.date} – {rec.status}
-        </li>
+        <div key={rec.id} className="list-item">
+          <strong>{rec.date}</strong> — {rec.status}
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
